@@ -11,12 +11,12 @@ app.use(bodyParser.json());
 
 // Route to fetch a swap quote
 app.get('/quote', async (req, res) => {
-  const { fromToken, toToken, fromNetwork, toNetwork, amount } = req.query;
+  const { fromToken, toToken, fromNetwork, toNetwork, userAddress, amount } = req.query;
 
   try {
     const response = await axios.get(`${BASE_URL}/quotation`, {
       headers: { 'x-api-key': API_KEY },
-      params: { fromToken, toToken, fromNetwork, toNetwork, amount }
+      params: { fromToken, toToken, fromNetwork, toNetwork, userAddress, amount }
     });
     res.json(response.data);
   } catch (error) {
@@ -27,11 +27,11 @@ app.get('/quote', async (req, res) => {
 
 // Route to perform a token swap
 app.post('/swap', async (req, res) => {
-  const { fromTokenId, toTokenId, fromAmount, userAddress, slippage } = req.body;
+  const { fromTokenId, toTokenId, fromAmount, userAddress, destinationAddress, slippage } = req.body;
 
   try {
     const response = await axios.post(`${BASE_URL}/swap`, {
-      fromTokenId, toTokenId, fromAmount, userAddress, slippage
+      fromTokenId, toTokenId, fromAmount, userAddress, destinationAddress, slippage
     }, {
       headers: { 'x-api-key': API_KEY }
     });
