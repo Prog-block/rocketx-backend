@@ -58,8 +58,19 @@ app.get('/status', async (req, res) => {
   }
 });
 
+app.get('/configs', async (req, res) => {
+
+  try {
+    const response = await axios.get(`${BASE_URL}/configs`, {
+      headers: { 'x-api-key': API_KEY }
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching configurations:", error.message);
+    res.status(500).send('Error fetching configurations');
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
