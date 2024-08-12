@@ -74,3 +74,10 @@ app.get('/configs', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+// chain names: Base Chain, ethereum, BTC, solana, arbitrum
+
+
+// toNetwork=BTC 
+// toToken=null
+// as toToken is native token
